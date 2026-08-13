@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: regency-gardens-frontend
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: pnpm install --frozen-lockfile && pnpm run build
+    startCommand: pnpm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NEXT_PUBLIC_API_URL
+        value: https://regency-gardens-1.onrender.com/api/v1
+      - key: BACKEND_API_URL
+        value: https://regency-gardens-1.onrender.com/api/v1
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: NODE_ENV
+        value: production
