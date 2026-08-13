@@ -68,7 +68,7 @@ export default function AdminPropertiesClient() {
         try {
             const { id, price, status, bedrooms, description } = editState;
             const res = await updateProperty(id, { price, status, bedrooms, description });
-            setProperties(prev => prev.map(p => p.id === id ? { ...p, price, status, bedrooms, description, ...(res.data || {}) } : p));
+            setProperties(prev => prev.map(p => p.id === id ? (res.data ? { ...p, ...res.data } : { ...p, price, status, bedrooms, description }) : p));
             showToast("success", `Property updated successfully.`);
             setEditState(null);
         } catch (err: any) {

@@ -22,7 +22,7 @@ export function UserOverviewClient({ user }: { user: User }) {
                     FavoriteService.getMyFavorites().catch(() => ({ data: [] }))
                 ]);
                 setProperties(propsRes.data || []);
-                setFavorites(favsRes.data || []);
+                setFavorites((favsRes as any).data || []);
             } catch (err) {
                 console.error("Failed to load user overview data", err);
             } finally {
